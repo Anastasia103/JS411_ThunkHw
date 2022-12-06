@@ -1,29 +1,6 @@
 import React from 'react'
 import PieChart from 'react-minimal-pie-chart';
-
-const Chart = (props) => {
-    // create variable "over" with all the cars whos horsepower is >= 200
-    // create variable "under" with all the cars whos horsepower is < 200
-    const over = props.cars.filter(c => c.horsepower >= 200)
-    const under = props.cars.filter(c => c.horsepower < 200)
-
-    return (
-        <div>
-            <PieChart style={{ width: '200px' }}
-                data={[
-                    { title: 'Over', value: over.length, color: '#C13C37' },
-                    { title: 'Under', value: under.length, color: '#E38627' },
-                ]}
-                label
-                labelStyle={{
-                    fill: 'white',
-                    fontSize: 'small'
-                }}
-            />
-            <Legend />
-        </div>
-    )
-}
+import {Container} from '@mui/material'
 
 function Legend() {
     return (
@@ -46,5 +23,32 @@ function Legend() {
         </h6>
     )
 }
+
+const Chart = (props) => {
+    let over = props.cars.filter(car => car.horsepower >= 200).length
+    let under = props.cars.filter(car => car.horsepower < 200).length
+    // create variable "over" with all the cars whose horsepower is >= 200
+    // create variable "under" with all the cars whose horsepower is < 200
+    return (
+        <Container>
+            {/* Pie Chart Breaks demo leaving it out for now  */}
+            {/* <PieChart 
+                style={{ width: '200px' }}
+                data={[
+                    { title: 'Over', value: over, color: '#C13C37' },
+                    { title: 'Under', value: under, color: '#E38627' }
+                  ]}
+                label={({ dataEntry }) => Math.round(dataEntry.percentage) + '%'}
+                labelStyle={{
+                    fill: 'white',
+                    fontSize: 'small'
+                }}
+                background = "#C13C37"
+            /> */}
+            <Legend />
+        </ Container>
+    )
+}
+
 
 export default Chart
